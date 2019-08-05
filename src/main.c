@@ -6,6 +6,9 @@ void init();
 void uswitch();
 void getinput();
 
+UINT8 player[2]; // Player pos
+UINT8 delnum = 150; // Delay length
+
 void main() {
   init();
   while(1) {
@@ -16,6 +19,8 @@ void main() {
     17 = max Y coord
     */
     uswitch();
+    getinput();
+    set_bkg_tiles(player[0],player[1],1,1,tilebk);
     wait_vbl_done();
   }
 }
@@ -23,7 +28,8 @@ void main() {
 void init() {
   DISPLAY_ON;
   set_bkg_data(0, 4, tiles);
-  set_bkg_tiles(9,8,1,1,tilelg);
+  player[0] = 9; // X
+  player[1] = 8; // Y
 }
 
 void uswitch() {
@@ -37,13 +43,34 @@ void getinput() {
   if (joypad() & J_B) {
   // The B button was pressed!
   } else if (joypad() & J_UP) {
-    // The UP button was pressed!
+    if(player[1] > 0) {
+      set_bkg_tiles(player[0],player[1],1,1,tiledg);
+      player[1]--; // Y+
+      set_bkg_tiles(player[0],player[1],1,1,tilebk);
+      delay(delnum);
+    }
   } else if (joypad() & J_DOWN) {
-    // The DOWN button was pressed!
+    if(player[1] < 17) {
+      set_bkg_tiles(player[0],player[1],1,1,tiledg);
+      player[1]++; // Y-
+      set_bkg_tiles(player[0],player[1],1,1,tilebk);
+      delay(delnum);
+    }
   } else if (joypad() & J_LEFT) {
-    // The LEFT button was pressed!
+    if(player[0] > 0) {
+      set_bkg_tiles(player[0],player[1],1,1,tiledg);
+      player[0]--; // X+
+      set_bkg_tiles(player[0],player[1],1,1,tilebk);
+      delay(delnum);
+    }
   } else if (joypad() & J_RIGHT) {
-    // The RIGHT button was pressed!
+    if(player[0] < 19) {
+      set_bkg_tiles(player[0],player[1],1,1,tiledg);
+      player[0]++; // X+
+      set_bkg_tiles(player[0],player[1],1,1,tilebk);
+      delay(delnum);
+    }
+
   }
 
 }
