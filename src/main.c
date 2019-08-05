@@ -1,4 +1,5 @@
 #include <gb/gb.h>
+#include "tiles/tiles.c"
 
 void init();
 void uswitch();
