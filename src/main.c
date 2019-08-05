@@ -1,5 +1,6 @@
 #include <gb/gb.h>
 #include "tiles/tiles.c"
+#include "tiles/mapTiles.c"
 
 void init();
 void uswitch();
@@ -14,6 +15,8 @@ void main() {
 
 void init() {
   DISPLAY_ON;
+  set_bkg_data(0, 4, tiles);
+  set_bkg_tiles(2,6,1,1,tilebk);
 }
 
 void uswitch() {
