@@ -41,7 +41,7 @@ void uswitch() {
 void getinput() {
 
   if (joypad() & J_B) {
-  // The B button was pressed!
+    set_bkg_tiles(0,0,20,18,refreshScr);
   } else if (joypad() & J_UP) {
     if(player[1] > 0) {
       set_bkg_tiles(player[0],player[1],1,1,tiledg);
